@@ -1,64 +1,41 @@
-# 🧬 Imagerie Biomédicale — VMI 2025
+# 🧬 Imagerie Biomédicale — Vision & Machines Intelligentes (VMI)
 **Auteur :** Wassim CHIKHI  
-**Formation :** Master 2 Vision et Machines Intelligentes — Université Paris Cité  
-**Année :** 2025 / 2026  
+**Année :** 2025  
+**Master 2 — Université Paris Cité — Parcours Vision et Machines Intelligentes**
 
 ---
 
 ## 🎯 Objectif
-Ce projet regroupe les **Travaux Pratiques d’Imagerie Biomédicale**, réalisés dans le cadre du parcours **VMI** :
+Cette section du dépôt regroupe les **Travaux Pratiques d’Imagerie Biomédicale**, couvrant l’imagerie photonique, la détection et le tracking de particules, et la segmentation morphologique à venir.
 
-1. 🧪 **TP1 — Imagerie Photonique : Modalités et Principe de la Fluorescence**  
-2. 🧠 **TP2 — Détection et Tracking de Spots sous ICY**  
-3. 🧬 **TP3 — Segmentation et Morphométrie (à venir)**  
-
-Chaque TP comprend :
-- un **notebook ou workflow ICY**,  
-- des **figures et scripts associés**,  
-- et un **rapport final** (PDF LaTeX format tau-class).
+Les TPs ont été réalisés dans le cadre du **Master 2 VMI**, à l’Université Paris Cité, sous l’encadrement de **Camille Kurtz**.
 
 ---
 
-## 📂 Structure générale
-```
-imagerie-biomed/
-├── tp1-modalities/
-│   ├── figures/           # Schémas optiques, intensités
-│   ├── images/            # Données d’analyse
-│   ├── report/            # Rapport LaTeX + PDF
-│   └── README.md
-│
-├── tp2-spots/
-│   ├── captures/          # Figures ICY (détection, tracking, stats)
-│   ├── data/              # Données TIFF et images sources
-│   ├── result/            # Exports ICY (xlsx, xml)
-│   ├── report/            # Rapport PDF + source LaTeX
-│   └── README.md
-│
-└── tp3-segmentation/      # (à venir)
-```
+## 🧩 Liste des Travaux Pratiques
 
----
+### 🧪 TP1 — Imagerie Photonique : Modalités et Photoblanchiment
+**Objectif :** Étudier les principales **modalités de microscopie photonique** (champ clair, fluorescence, confocale) et mesurer le phénomène de photoblanchiment.  
 
-## 🧩 TPs réalisés
+- Visualisation et mesure d’intensité lumineuse dans le temps  
+- Fit exponentiel pour estimer la constante de décroissance τ  
+- Schémas optiques et traitement d’images sous Python
 
-### 🧪 TP1 — Imagerie Photonique : Modalités et Fluorescence
-**Objectif :** Illustrer les principales **modalités de microscopie photonique** (champ clair, contraste de phase, fluorescence, confocale).  
-- Construction de **schémas optiques TikZ**.  
-- Étude du **photoblanchiment** sur une séquence temporelle.  
-- Calcul de l’intensité moyenne :  
-  \[
-  I_{moy}(t) = \frac{1}{N}\sum_{i=1}^{N} I_i(t)
-  \]
-📄 Rapport : [`tp1-modalities/report/TP_1_BioImg.pdf`](./tp1-modalities/report/TP_1_BioImg.pdf)
+📄 **Rapport PDF :** [`tp1-modalities/report/TP_1_BioImg.pdf`](./tp1-modalities/report/TP_1_BioImg.pdf)  
+📁 **Dossier complet :** [`tp1-modalities/`](./tp1-modalities/)
 
 ---
 
 ### 🧠 TP2 — Détection et Tracking de Spots sous ICY
-**Objectif :** Mettre en œuvre un pipeline complet de **détection et suivi de particules** sous ICY.  
-- Détection multi-échelle via **Wavelet Spot Detector**.  
-- Suivi temporel par **Spot Tracking + Kalman**.  
-- Analyse des vitesses et longueurs via **Track Manager**.  
+**Objectif :** Détecter et suivre le **mouvement de particules fluorescentes** à l’aide du logiciel **ICY**, puis automatiser partiellement le processus via des scripts Python (Jython).  
+
+**Pipeline ICY :**
+1️⃣ Import `cell2D_timelapse.tif`  
+2️⃣ Détection des spots (Wavelet Spot Detector)  
+3️⃣ Tracking temporel (Kalman / Diffusive Model)  
+4️⃣ Analyse (ROI Statistics + Track Manager)  
+5️⃣ Export des fichiers `Interior.xlsx` et `trackManager.xml`
+
 **Résultats principaux :**
 | Mesure | Moyenne | Écart-type | Unité |
 |:--|:--:|:--:|:--|
@@ -67,34 +44,54 @@ imagerie-biomed/
 | Durée moyenne | 8.4 | 1.7 | frames |
 | Vitesse moyenne | 1.2 | 0.4 | px/frame |
 
-📄 Rapport : [`tp2-spots/report/TP_2_BioImg_Wassim.pdf`](./tp2-spots/report/TP_2_BioImg_Wassim.pdf)
+📄 **Rapport PDF :** [`tp2-spots/report/TP_2_BioImg_Wassim.pdf`](./tp2-spots/report/TP_2_BioImg_Wassim.pdf)  
+📁 **Code source complet :** [TP2-Spots sur GitHub](https://github.com/vvazzim/Tp-VMI-Wassim/tree/main/imagerie-biomed/tp2-spots)
 
 ---
 
-## ⚙️ Environnement de travail
-**Installation via Conda :**
+### 🧬 TP3 — Segmentation et Morphométrie (à venir)
+**Objectif :** Implémenter des approches de **segmentation sémantique** (U-Net, Watershed) et des outils de morphométrie sur images médicales.  
+📁 Dossier : `tp3-segmentation/`
+
+---
+
+## 📂 Arborescence de la section BioImaging
+```
+imagerie-biomed/
+├── tp1-modalities/
+│   ├── figures/
+│   ├── data/
+│   ├── report/
+│   └── README.md
+│
+├── tp2-spots/
+│   ├── captures/
+│   ├── data/
+│   ├── ICY_TP02_pipeline/
+│   ├── result/
+│   ├── report/
+│   └── README.md
+│
+└── tp3-segmentation/
+```
+
+---
+
+## ⚙️ Environnement recommandé
+### Installation via Conda
 ```bash
 conda env create -f env/environment.yml
 conda activate bioimg
 ```
 
-**ou via pip :**
+### ou via pip
 ```bash
 pip install -r env/requirements.txt
 ```
 
-Librairies clés :
-- `scikit-image`, `tifffile`, `numpy`, `matplotlib`, `opencv-python`
-- ICY / Fiji pour le tracking
-- LaTeX avec `tau-class` pour la mise en page des rapports
-
----
-
-## 🧠 Bonnes pratiques
-- 🔒 **Ne jamais modifier** `data/raw/` → travailler uniquement sur `processed/`.  
-- 🧪 Chaque TP contient son propre environnement et son rapport.  
-- 📈 Les figures et scripts sont systématiquement reliés dans le README du TP.  
-- 🧾 Les rapports sont compilés sous LaTeX pour assurer une mise en page homogène.
+**Librairies clés :**  
+`numpy`, `scikit-image`, `matplotlib`, `opencv-python`, `tifffile`, `scipy`  
++ logiciels externes : **ICY**, **Fiji**, **LaTeX (tau-class)**
 
 ---
 
@@ -102,11 +99,10 @@ Librairies clés :
 - Olivo-Marin, *Wavelet-based detection of spots and features in biological images*, IEEE, 2002.  
 - Genovesio et al., *Tracking of Cells in Videos: A Particle Filtering Approach*, IEEE TPAMI, 2005.  
 - Ronneberger et al., *U-Net: Convolutional Networks for Biomedical Image Segmentation*, MICCAI, 2015.  
-- Cours d’Imagerie Biomédicale — M2 VMI (Camille Kurtz).
+- Cours d’Imagerie Biomédicale — *Université Paris Cité* (Camille Kurtz).
 
 ---
 
-## 🔗 Liens utiles
-- [ICY Software](https://icy.bioimageanalysis.org/)  
-- [scikit-image](https://scikit-image.org/)  
-- [TrackMate (Fiji)](https://imagej.net/plugins/trackmate/)
+## ⚖️ Licence
+Projet académique — **Licence MIT**  
+© 2025 — *Wassim CHIKHI*
