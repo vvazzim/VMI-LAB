@@ -21,7 +21,7 @@ Mettre en œuvre un pipeline complet sous **ICY** pour :
 | 3️⃣ | Réglages | Scales = 1–2, Sensitivity = 100, Threshold = 5–8 | Détection multi-échelle, export ROI + SwimmingPool |
 | 4️⃣ | Spot Tracking | Relier les ROIs dans le temps | 138 trajectoires créées |
 | 5️⃣ | Track Manager + ROI Statistics | Calcul de longueurs, durées, vitesses | Fichier `Interior.xlsx` généré |
-| 6️⃣ | Export / Save Workspace | Sauvegarder résultats et XML | `trackManager.xml`, `TP2_workspace.icy` |
+| 6️⃣ | Export final | Sauvegarder résultats et XML | `trackManager.xml`, `cell2D_timelapse_with_tracks.xml` |
 
 ---
 
@@ -29,6 +29,20 @@ Mettre en œuvre un pipeline complet sous **ICY** pour :
 - **Wavelet Spot Detector** → Bright over dark ✅ ; Scales = 1, 2 ; Threshold = 5–8  
 - **Spot Tracking** → Model = Diffusive ; Linking distance = 5 px ; Gap closing = 1 frame  
 - **Track Manager** → Processors : ROI Statistics + Instant Speed  
+
+---
+
+## ⚙️ Automatisation (ICY_TP02_pipeline)
+L’automatisation du protocole a été réalisée **uniquement en Python (Jython)** via le **Script Editor** d’ICY :
+
+| Script | Fonction | Détails |
+|:--|:--|:--|
+| `TP02_tracking_script.py` | Sauvegarde **un seul** fichier XML ré-ouvrable (`cell2D_timelapse_with_tracks.xml`). | Utilise la séquence active avec trajectoires. |
+| `TP02_semi_auto_pipeline.py` | Mode **semi-automatique** (pause → OK → export). | Le script attend la validation avant sauvegarde. |
+| `TP02_tracking_howto.md` | Guide pas-à-pas (Script Editor). | Utilisation et dépannage. |
+| `TP02_tracking_blocks.txt` | Description du pipeline visuel (optionnelle). | Pour reconstruire les blocs manuellement. |
+
+🗂️ Ces fichiers se trouvent dans le dossier [`ICY_TP02_pipeline/`](./ICY_TP02_pipeline/).
 
 ---
 
@@ -68,11 +82,12 @@ Mettre en œuvre un pipeline complet sous **ICY** pour :
 
 ## 📁 Arborescence du TP2
 ```
-tp2-spots/
+TP2-Spots/
 ├── captures/          # Figures pour le rapport
 ├── data/              # Données brutes (.tif, .jpg)
 ├── result/            # Exports ICY : .xlsx, .xml
-├── report/            # Rapport final PDF + sources LaTeX
+├── ICY_TP02_pipeline/ # Scripts Python pour automatisation
+├── report/            # Rapport PDF + source LaTeX
 │   ├── TP_2_BioImg_Wassim.pdf
 │   └── latex/TP2_Spots_Tracking.tex
 └── README.md
@@ -89,4 +104,10 @@ tp2-spots/
 ## 📚 Références
 - Olivo-Marin, *Wavelet-based detection of spots and features in biological images*, IEEE, 2002.  
 - Genovesio et al., *Tracking of Cells in Videos: A Particle Filtering Approach*, IEEE TPAMI, 2005.  
-- ICY Documentation — Spot Detector & Track Manager Plugins.
+- ICY Documentation — Spot Detector, Track Manager, Scripting (Jython).
+
+---
+
+## 🔗 Dépôt GitHub
+Code et scripts :  
+👉 [https://github.com/vvazzim/Tp-VMI-Wassim/tree/main/imagerie-biomed/TP2-Spots](https://github.com/vvazzim/Tp-VMI-Wassim/tree/main/imagerie-biomed/TP2-Spots)

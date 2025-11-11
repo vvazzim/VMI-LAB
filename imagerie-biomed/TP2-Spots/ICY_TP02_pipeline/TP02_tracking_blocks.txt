@@ -1,0 +1,45 @@
+ICY Protocol – Blocks (Engine v3.2)
+
+[1] Sequence input
+    - file: <ABSOLUTE_PATH>/cell2D_timelapse.tif
+
+[2] Wavelet Spot Detector Block
+    - Detector: UDWTWaveletDetector
+    - Bright over dark: true
+    - Scales: 1, 2
+    - Sensitivity: 100
+    - Threshold: 5–8
+    - Output: Export to ROI: true
+    - Output: Export to SwimmingPool: true
+    Connections:
+    - output (sequence, blue) → next consumers
+    - output (ROIs, black) → tracking
+
+[3] Spot Tracking (Kalman / MHT)
+    - Target motion: diffusive
+    - Linking distance: 5 px
+    - Gap closing: 1
+    - Display trajectories: true
+    - Export to Track Manager: true
+    Connections:
+    - input (ROIs, black) from [2]
+    - input (sequence, blue) from [1] or [2]
+
+[4] ROI track statistics
+    - Measures: Length, Duration, Mean speed
+    Connections:
+    - input (TrackGroup/ROIs, black) from [3]
+
+[5] Track XLS export
+    - filename: tracking_results.xls
+    Connections:
+    - input (table/measurements) from [4]
+
+[6] Track XML export (optional)
+    - filename: trackManager.xml
+    Connections:
+    - input (TrackGroup) from [3]
+
+Notes:
+- Depending on your build names, [3] might appear as “Spot Tracking”, “MHT Tracking”, or “Tracking (Spot Tracker)”
+- If the black connection is incompatible, insert a converter: “ROIs to Track Group” between [2] and [3].

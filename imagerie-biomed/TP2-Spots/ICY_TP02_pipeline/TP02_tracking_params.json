@@ -1,0 +1,24 @@
+{
+  "inputPath": "C:/path/to/TP2-Spots/data/cell2D_timelapse.tif",
+  "outDir": "C:/path/to/TP2-Spots/result",
+  "detector": {
+    "bright_over_dark": true,
+    "scales": [
+      1,
+      2
+    ],
+    "sensitivity": 100,
+    "threshold": 5
+  },
+  "tracking": {
+    "model": "diffusive",
+    "linking_distance_px": 5,
+    "gap_closing_frames": 1,
+    "export_to_track_manager": true
+  },
+  "exports": {
+    "xls": "tracking_results.xls",
+    "xml": "trackManager.xml",
+    "sequence_xml": "cell2D_timelapse_with_tracks.xml"
+  }
+}
