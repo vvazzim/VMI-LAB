@@ -1,0 +1,40 @@
+* [33m5cef531[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Ajout propre de la partie 3D (projet final + TPs essentiels)
+* [33m9177dd4[m Update gitignore for 3D project
+* [33m5043598[m Ignore local 3D final project folder
+* [33mbe1452b[m Ignore local 3D final project folder
+* [33m2579ef7[m Update GANLab TP and gitignore
+*   [33m50889c1[m Merge origin/main and keep remote README for TP2 Color Supp
+[32m|[m[33m\[m  
+[32m|[m * [33m1530243[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Update README.md
+[32m|[m * [33m7118405[m Ajout TP couleur
+[32m|[m * [33mc1584ae[m Final TP CLIP
+* [33m|[m [33me3ce99e[m Add 3D TP project files
+* [33m|[m [33m4da514a[m Add ReadMe
+[33m|[m[33m/[m  
+* [33m5ca0ffd[m Add Multi-modalité et IA générative
+* [33m0be9039[m Cleaning...
+*   [33mad8b22b[m Update report
+[34m|[m[35m\[m  
+[34m|[m * [33m8f35d31[m Rename README_VMI2025.md to README.md
+* [35m|[m [33m885644e[m TP2 (ICY): rapport enrichi — justification paramètres, résultats convertis en unités réelles, section contrôle qualité et discussion approfondie selon feedback.
+[35m|[m[35m/[m  
+* [33mfccfaed[m Update README.md
+* [33mf35b3e6[m Add updated BioImaging root README (TP1 Modalities + TP2 Spots)
+* [33mfaeb8b8[m TP2 (ICY): version finale stable — pipeline Python/Jython (semi-auto + XML unique), README synchronisés, rapport tau-class à jour.
+* [33mdd2c934[m Add GitHub source link to TP2 BioImaging report (particle tracking)
+* [33m344851c[m Update global README — added TP1–TP2 BioImaging and unified repo structure
+* [33m6374b7f[m Add TP2 BioImaging — ICY Spot Detection & Tracking (README + report)
+* [33m815a2c4[m TP1 BioImg
+* [33md970939[m Reorganize BioImaging folder — rename TP1 Seg-Medicale → TP1 Modalities
+* [33mcd03496[m Update README.md
+* [33m996e748[m Add ReadMe
+* [33mb648b2d[m Add Final Rapport Ssl
+* [33m1e5fdfc[m Add TP3 SSL (notebook + rapport + README)
+* [33m3c16eb0[m Update README.md
+* [33m1b4af46[m Update README.md
+* [33m216923d[m Add Notebook V3.0
+* [33me777529[m Add rapport fcm
+* [33m9643bda[m Add Fuzzy C Meains TP's data (Milky-way.jpg)
+* [33md561076[m Add project structure (Reco, DL, Biomed, 3D, templates)
+* [33m7c23fbb[m Update README.md
+* [33m893bbd6[m first commit
