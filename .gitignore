@@ -2,3 +2,39 @@
 rapport/*.pdf
 rapport/*.docx
 **/out/
+
+# === temp / python ===
+**/__pycache__/
+**/*.pyc
+**/.ipynb_checkpoints/
+
+# === Heavy raw data (photos / microscopy / large images) ===
+**/*.tif
+**/*.tiff
+**/*.TIF
+**/*.TIFF
+**/*.JPG
+**/*.JPEG
+**/*.PNG
+**/*.jpg
+**/*.jpeg
+**/*.png
+
+# === Metashape heavy cache ===
+**/*.files/
+**/*.files/**
+**/*.oc3
+**/*.psz
+**/*.zip
+
+# === Keep important deliverables ===
+!**/screenshots/**
+!**/captures/**
+!**/figures/**
+!**/report/**
+!**/rapport/**
+!**/*.pdf
+
+# Optional: keep 3D exports if small (remove if too heavy)
+!**/models_export/**
+!**/model_export/**
