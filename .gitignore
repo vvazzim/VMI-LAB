@@ -1,40 +1,27 @@
-.ipynb_checkpoints/
-rapport/*.pdf
-rapport/*.docx
-**/out/
-
-# === temp / python ===
-**/__pycache__/
-**/*.pyc
-**/.ipynb_checkpoints/
-
-# === Heavy raw data (photos / microscopy / large images) ===
+# ===== BIG DATA / OUTPUTS (global) =====
+**/data/raw/
+**/data/processed/
+**/data/results/
 **/*.tif
 **/*.tiff
-**/*.TIF
-**/*.TIFF
-**/*.JPG
-**/*.JPEG
-**/*.PNG
-**/*.jpg
-**/*.jpeg
-**/*.png
-
-# === Metashape heavy cache ===
-**/*.files/
-**/*.files/**
-**/*.oc3
-**/*.psz
+**/*.avi
+**/*.mp4
+**/*.mov
 **/*.zip
+**/*.7z
+**/*.rar
 
-# === Keep important deliverables ===
-!**/screenshots/**
-!**/captures/**
-!**/figures/**
-!**/report/**
-!**/rapport/**
-!**/*.pdf
+# Metashape / photogrammetry heavy
+**/*.psx
+**/*.files/
+**/*.oc3
 
-# Optional: keep 3D exports if small (remove if too heavy)
-!**/models_export/**
-!**/model_export/**
+# Images lourdes (optionnel : garde seulement figures/screen)
+# Si tu veux garder les captures/figures, commente ces 2 lignes
+# **/*.jpg
+# **/*.png
+
+# ===== 3D heavy folders (tu peux garder que les TP "code/rapport") =====
+3d/Projet Final/
+3d/Projet V1/
+3d/photo/
