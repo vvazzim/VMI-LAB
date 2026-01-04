@@ -1,0 +1,246 @@
+\documentclass[11pt,a4paper,twoside]{tau-class/tau}
+
+% ====== Packages ======
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{hyperref}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+% ====== Metadata ======
+\journalname{Report -- Knowledge Distillation Lab}
+\title{Distillation de Connaissances\\pour la Classification d’Images\\(CIFAR-10)}
+\author{Wassim Chikhi}
+\affil{Master 2 Vision et Machines Intelligentes -- 2025/2026}
+\footinfo{Janvier 2026}
+\leadauthor{Chikhi}
+\course{M2 VMI}
+
+% ====== Figures path ======
+\graphicspath{{figures/}}
+
+\begin{document}
+
+% ====== Cover page ======
+\begin{minipage}{0.72\textwidth}
+  \maketitle
+\end{minipage}%
+\begin{minipage}{0.28\textwidth}
+  \raggedleft
+  \vspace{-2cm}
+  \IfFileExists{Universite_Paris-Cite-logo.jpeg}{%
+    \includegraphics[width=4.8cm]{Universite_Paris-Cite-logo.jpeg}%
+  }{}
+\end{minipage}
+\thispagestyle{firststyle}
+
+\noindent
+\textit{La soumission comprend un notebook Jupyter (code, checkpoints Google Drive et sorties)
+ainsi que ce rapport \LaTeX.}
+
+
+\noindent
+\textbf{Notebook :} \href{https://colab.research.google.com/drive/1BsdnKhWKYw3uD5qmgc7UgA_n-fkHRv8Y?usp=sharing}{Google Colab}
+\quad | \quad
+\textbf{Code :} \href{https://github.com/vvazzim/Tp-VMI-Wassim/tree/main/Méthodologie%20et%20imageries%20thématiques/TP3%20Efficient%20DL}{GitHub}
+
+
+\noindent
+\textbf{Auteur :} Wassim Chikhi
+
+% =====================================================
+\section{Introduction}
+
+La distillation de connaissances (\textit{Knowledge Distillation}) vise à transférer les
+informations apprises par un modèle performant (\textit{teacher}) vers un modèle plus léger
+(\textit{student}). Le student est entraîné non seulement sur les labels (\textit{hard targets}),
+mais aussi sur les prédictions du teacher (\textit{soft targets}), ce qui peut améliorer la
+généralisation, en particulier lorsque le student a moins de capacité.
+
+Dans ce TP, on compare différentes stratégies de distillation sur CIFAR-10, en opposant :
+\begin{itemize}
+  \item un \textbf{teacher ResNet50} (pré-entraîné ImageNet, puis ajusté CIFAR-10),
+  \item des \textbf{students ResNet18} (pré-entraîné ou entraîné from scratch),
+  \item distillation sur les \textbf{logits} (scores),
+  \item distillation sur les \textbf{logits + cartes de caractéristiques} (features).
+\end{itemize}
+
+Les expériences sont rendues robustes aux contraintes de session Colab grâce à des
+\textbf{checkpoints persistants sur Google Drive} (chargement automatique si déjà présents).
+
+% =====================================================
+\section{Données}
+
+\subsection{Dataset CIFAR-10}
+
+CIFAR-10 contient 60\,000 images RGB $32\times32$ réparties en 10 classes.
+Le notebook effectue un split reproductible avec \texttt{val\_ratio=0.1} (seed=42) :
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Split} & \textbf{Taille} & \textbf{Classes} & \textbf{Résolution} \\
+\midrule
+Train & 45\,000 & 10 & $32\times32$ \\
+Validation & 5\,000 & 10 & $32\times32$ \\
+Test & 10\,000 & 10 & $32\times32$ \\
+\bottomrule
+\end{tabular}
+\caption{Répartition CIFAR-10 utilisée dans le notebook.}
+\end{table}
+
+\subsection{Prétraitements}
+
+Pour exploiter le pré-entraînement ImageNet, les images sont :
+\begin{itemize}
+  \item redimensionnées en $224\times224$,
+  \item normalisées avec la moyenne/écart-type ImageNet,
+  \item augmentées au train par \textit{random crop} et \textit{horizontal flip}.
+\end{itemize}
+
+% =====================================================
+\section{Configuration expérimentale}
+
+La configuration utilisée (extrait du notebook) est :
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Hyperparamètre} & \textbf{Valeur} \\
+\midrule
+Optimiseur & AdamW \\
+Learning rate & $10^{-3}$ \\
+Weight decay & $10^{-4}$ \\
+Batch size & 128 \\
+Époques teacher & 10 \\
+Époques student & 10 \\
+Époques KD & 10 \\
+Split validation & 10\% (seed=42) \\
+\bottomrule
+\end{tabular}
+\caption{Hyperparamètres principaux.}
+\end{table}
+
+Le teacher et le student ont respectivement :
+\begin{itemize}
+  \item Teacher ResNet50 : \textbf{23\,528\,522} paramètres,
+  \item Student ResNet18 : \textbf{11\,181\,642} paramètres.
+\end{itemize}
+
+% =====================================================
+\section{Méthodes}
+
+\subsection{Baseline (student sans distillation)}
+
+Le student est entraîné classiquement sur CIFAR-10 avec une entropie croisée.
+
+\subsection{Distillation sur les scores (KD logits)}
+
+La perte de distillation combine :
+\[
+\mathcal{L} =
+\alpha \, \mathcal{L}_{CE}(s, y) \;+\;
+(1-\alpha)\, T^2 \, KL\big(\sigma(\tfrac{s}{T}), \sigma(\tfrac{t}{T})\big)
+\]
+avec $T=4$ et $\alpha=0.5$ (valeurs utilisées dans le notebook).
+
+\subsection{Distillation sur scores + features (KD logits + features)}
+
+On extrait la carte de caractéristiques finale (\texttt{layer4}) du teacher et du student,
+et on impose au student de reproduire ces features (MSE), en plus de la KD logits.
+Un adaptateur $1\times1$ est ajouté pour aligner les dimensions (512 $\rightarrow$ 2048).
+
+\paragraph{Remarque.}
+L’adaptateur est utilisé uniquement pendant l’entraînement. L’évaluation finale compare
+les performances du \textbf{backbone student} (classification CIFAR-10).
+
+\subsection{Stratégie 2 : entraînement from scratch}
+
+On répète les expériences baseline et KD logits en initialisant le student sans
+poids ImageNet (\texttt{pretrained=False}), afin d’évaluer l’impact du pré-entraînement.
+
+% =====================================================
+\section{Résultats}
+
+\subsection{Comparaison sur le jeu de test (3 modèles principaux)}
+
+Les sorties du notebook donnent les accuracies test suivantes :
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Modèle} & \textbf{Test accuracy} \\
+\midrule
+Teacher (ResNet50) & 0.9297 \\
+Student baseline (ResNet18, pretrained) & 0.9213 \\
+Student KD logits (ResNet18, pretrained) & 0.9312 \\
+\bottomrule
+\end{tabular}
+\caption{Performances sur le jeu de test (valeurs issues du notebook).}
+\end{table}
+
+On observe que la distillation sur les logits permet au student d’atteindre une performance
+du même ordre que le teacher, et même légèrement supérieure dans cette exécution.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.70\textwidth]{comparison_test_accuracy.png}
+\caption{Comparaison test : Teacher vs Student baseline vs Student KD logits.}
+\end{figure}
+
+\subsection{Comparaison globale (validation)}
+
+La figure finale du notebook compare toutes les stratégies (teacher, baseline,
+KD features, scratch baseline, scratch KD). On observe :
+\begin{itemize}
+  \item un gain entre baseline pretrained et KD logits,
+  \item un gain additionnel via KD logits + features,
+  \item un écart net entre pretrained et scratch,
+  \item un rattrapage partiel du scratch grâce à KD logits.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{comparaison_finale.png}
+\caption{Comparaison finale des accuracies (validation) pour toutes les stratégies.}
+\end{figure}
+
+% =====================================================
+\section{Discussion}
+
+Les résultats confirment l’intérêt de la distillation :
+\begin{itemize}
+  \item La KD logits fournit une supervision plus riche que les labels seuls,
+  \item La distillation multi-niveaux (logits + features) renforce encore l’alignement
+  student/teacher, améliorant généralement la performance,
+  \item Le pré-entraînement ImageNet reste un facteur dominant, mais la distillation aide
+  également un student scratch à progresser.
+\end{itemize}
+
+D’un point de vue ingénierie, l’utilisation de checkpoints persistants sur Drive
+(\texttt{train OR load}) rend les expériences robustes aux contraintes de session Colab,
+et garantit la reproductibilité.
+
+% =====================================================
+\section{Conclusion}
+
+Ce TP montre qu’un student plus compact peut atteindre des performances proches d’un teacher
+grâce à la distillation. La KD logits est déjà efficace, et l’ajout de contraintes sur les
+features peut encore améliorer les résultats. Enfin, l’approche scratch souligne que la
+distillation constitue un mécanisme utile même sans pré-entraînement, bien qu’un écart
+subsiste par rapport au pretrained.
+
+\vfill
+\noindent\textbf{Auteur :} Wassim Chikhi \hfill
+\textbf{Année académique :} 2025/2026
+
+\end{document}
