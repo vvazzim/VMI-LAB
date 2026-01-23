@@ -22,11 +22,13 @@
 # **/*.png
 
 # ===== 3D heavy folders (tu peux garder que les TP "code/rapport") =====
-3d/Projet Final/
 3d/Projet V1/
 3d/photo/
 
-!/3d/Projet Final/Submit_Wassim/**
+3d/Projet Final/*
+!3d/Projet Final/Submit_Wassim/
+!3d/Projet Final/Submit_Wassim/**
+
 
 desktop.ini
 .DS_Store
