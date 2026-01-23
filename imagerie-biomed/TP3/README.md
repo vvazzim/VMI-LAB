@@ -1,29 +1,32 @@
-# 🧬 TP3 — Segmentation & Tracking de cellules HeLa  
-**UE Imagerie Biomédicale — Master 2 Vision & Machines Intelligentes (VMI)**
+# TP3 — Segmentation & Tracking de cellules HeLa
+**UE Bio-Imagerie Médicale — Master 2 Vision et Machine Intelligente (VMI)**
 
----
+[![Kaggle](https://img.shields.io/badge/Kaggle-Notebook-blue?logo=kaggle)](https://www.kaggle.com/code/wassmed/tp3-cellsegmentation-tracking-q2-v-2-2)
 
-## 👤 Auteur  
+## 👤 Auteur
 **Wassim Chikhi**  
-Université Paris Cité — Année universitaire 2025–2026
+Université Paris Cité — Année 2025/2026
 
 ---
 
-## 🎯 Objectifs pédagogiques
+## 🎯 Objectifs du TP
 
-Ce TP vise à mettre en œuvre et comparer **deux approches complémentaires** d’analyse d’images cellulaires :
+Ce TP met en œuvre deux approches complémentaires d’analyse d’images cellulaires HeLa :
 
-- **Approche interactive (ICY)** : segmentation, détection de spots fluorescents et analyse quantitative par cellule.  
-- **Approche automatique (Python / Deep Learning)** : segmentation par réseau de neurones (Cellpose) et reconstruction de trajectoires cellulaires (TrackPy).
+- **Question 1 — ICY (approche interactive)**  
+  Segmentation de cellules fluorescentes, détection de *spots* intracellulaires et quantification du nombre de spots par cellule via des ROIs.
 
-L’objectif global est d’évaluer les avantages et limites d’une analyse **manuelle supervisée** face à une analyse **automatique et scalable**.
+- **Question 2 — Python (approche automatique)**  
+  Segmentation automatique de cellules HeLa dans une séquence 2D+temps (Cell Tracking Challenge) avec **Cellpose**, puis reconstruction des trajectoires avec **TrackPy**.
+
+L’objectif global est de comparer une approche interactive contrôlée (ICY) à une approche entièrement automatique (deep learning + tracking).
 
 ---
 
 ## 📁 Organisation du dossier
 
-```text
-TP3-Imagerie-Biomed/
+```
+imagerie-biomed/TP3/
 ├─ data/
 │  ├─ HeLa_cells.tif
 │  └─ DIC-C2DH-HeLa/
@@ -33,13 +36,20 @@ TP3-Imagerie-Biomed/
 │  ├─ protocols/
 │  └─ exports/
 │
-├─ python/
-│  ├─ tp3-cellseg-tracking.ipynb
-│  └─ figures/
+├─ notebook/
+│  └─ tp3-cellsegmentation-tracking-q2-v-2-2.ipynb
+│
+├─ figures/
+│  ├─ dic_frame0.png
+│  ├─ cellpose_segmentation_frame0.png
+│  ├─ centroids_frame0.png
+│  └─ HeLa_trajectories.png
+│
+├─ results/
+│  └─ HeLa_trajectories.csv
 │
 ├─ report/
-│  ├─ TP3_CellSegmentation_Tracking.pdf
-│  └─ figures/
+│  └─ TP3_CellSegmentation_Tracking_Wassim.pdf
 │
 └─ README.md
 ```
@@ -48,49 +58,67 @@ TP3-Imagerie-Biomed/
 
 ## 🧪 Question 1 — Analyse sous ICY
 
-- Filtrage médian  
-- Seuillage automatique (Otsu / Best Threshold)  
-- Morphologie (Fill Holes, Dilation, Erosion)  
-- Détection de spots par ondelettes  
-- Comptage des spots par cellule via ROIs  
+**Données**  
+- Image multicanal : `HeLa_cells.tif`
 
-Les paramètres sont documentés par captures d’écran pour assurer la reproductibilité.
+**Pipeline ICY**
+- Filtrage médian (réduction du bruit)
+- Seuillage automatique (Otsu / Best Threshold)
+- Morphologie (Fill Holes, Dilation, Erosion)
+- Détection de spots par ondelettes (*Spot Detector*)
+- Comptage des spots par cellule via ROIs
+
+**Résultats**
+- Comptage des spots sur plusieurs cellules
+- Calcul moyenne / écart-type
+- Discussion sur la variabilité inter-cellulaire et la sensibilité aux seuils
 
 ---
 
 ## 🤖 Question 2 — Analyse automatique (Python)
 
-### Segmentation — Cellpose
+### Segmentation (Cellpose)
 - Modèle : Cellpose v4  
-- `diameter = 30`  
-- `flow_threshold = 0.4`  
-- `cellprob_threshold = 0.0`
+- Paramètres :
+  - `diameter = 30`
+  - `flow_threshold = 0.4`
+  - `cellprob_threshold = 0.0`
 
-### Tracking — TrackPy
-- Extraction des centroïdes  
-- `search_range = 25`  
-- `memory = 3`
-
----
-
-## 📊 Figures produites
-
-- Image DIC brute  
-- Segmentation Cellpose  
-- Centroïdes  
-- Trajectoires cellulaires
+### Tracking (TrackPy)
+- Extraction des centroïdes à partir des masques
+- Nearest Neighbour linking :
+  - `search_range = 25`
+  - `memory = 3`
+- Visualisation des trajectoires superposées à l’image DIC
 
 ---
 
-## 🔁 Reproductibilité
+## 📊 Figures clés
+- `dic_frame0.png` — image DIC brute
+- `cellpose_segmentation_frame0.png` — segmentation Cellpose
+- `centroids_frame0.png` — centroïdes
+- `HeLa_trajectories.png` — trajectoires finales
 
-Notebook exécutable (GPU) :  
-https://www.kaggle.com/code/wassmed/tp3-cellsegmentation-tracking-q2
+---
+
+## 🔁 Reproductibilité (Kaggle)
+
+Le notebook est exécutable **sur GPU via Kaggle** :
+
+👉 https://www.kaggle.com/code/wassmed/tp3-cellsegmentation-tracking-q2-v-2-2
+
+Il permet de :
+- relancer la segmentation Cellpose,
+- extraire les centroïdes,
+- effectuer le tracking TrackPy,
+- régénérer toutes les figures du rapport.
 
 ---
 
 ## ✅ Conclusion
 
-Ce TP met en évidence la complémentarité entre **ICY** (contrôle visuel précis)
-et **Cellpose + TrackPy** (pipeline automatique robuste), constituant un workflow
-efficace pour l’étude dynamique des cellules HeLa.
+Ce TP met en évidence la complémentarité entre :
+- **ICY**, adapté à l’analyse interactive et au contrôle visuel précis,
+- **Cellpose + TrackPy**, solution automatique et scalable pour l’analyse dynamique temporelle.
+
+L’association des deux constitue un workflow robuste pour l’étude morphologique et dynamique des cellules HeLa.
