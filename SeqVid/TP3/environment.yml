@@ -1,0 +1,12 @@
+name: cv-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - opencv
+  - numpy
+  - matplotlib
+  - tqdm
+  - pip
+  - pip:
+      - ultralytics

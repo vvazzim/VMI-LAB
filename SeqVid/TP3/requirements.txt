@@ -1,0 +1,15 @@
+# Core
+numpy>=2.0
+opencv-python>=4.10
+matplotlib>=3.7
+tqdm>=4.66
+
+# YOLOv8
+ultralytics>=8.1
+
+# Torch CPU (Windows)
+torch>=2.2
+torchvision>=0.17
+
+# Utils
+pandas>=2.0

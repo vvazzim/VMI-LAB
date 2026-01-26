@@ -1,0 +1,9 @@
+tracking/
+tracking_results/
+__pycache__/
+*.mp4
+*.avi
+*.mpeg
+*.pt
+.ipynb_checkpoints/
+.DS_Store
