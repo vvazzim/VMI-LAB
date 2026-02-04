@@ -166,7 +166,8 @@ Tp-VMI-Wassim/
 ## 🧾 Rapports et documentation
 - Chaque TP contient un **rapport LaTeX** compilé en PDF dans `rapport/` ou `report/`.  
 - Figures, tables et légendes sont reliées aux données ICY, NumPy ou Matplotlib selon le TP.  
-- Chaque module dispose généralement de son propre `README.md` pour les détails spécifiques.
+- Chaque module dispose de son propre `README.md` pour les détails spécifiques.  
+- Modèles (templates) pour TPs et rapports : `docs/templates/` (voir `docs/README.md`).
 
 ---
 

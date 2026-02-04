@@ -74,8 +74,7 @@ TP2-Spots/
 ---
 
 ## 📄 Rapport
-- PDF : `report/TP_2_BioImg_Wassim.pdf`  
-- LaTeX : `report/latex/TP2_Spots_Tracking.tex`
+- PDF : `report/TP_2_BioImg_Wassim.pdf`
 
 ---
 

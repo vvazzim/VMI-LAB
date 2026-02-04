@@ -1,26 +1,38 @@
-# Deep Learning — TP2 — CNN & Transfer Learning
-**Auteur :** <Ton Nom> · **Date :** <jj/mm/aaaa>
+# TP2 — CNN & Transfer Learning
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<URL_VERS_NOTEBOOK_SUR_GITHUB>)
+**Master 2 VMI — Module Deep Learning**
 
-## 🎯 Objectifs
-- …
+---
+
+## 🎯 Objectif
+
+Fine-tuning de **ResNet18** (pré-entraîné ImageNet) sur des datasets de classification.
+
+---
+
+## 📁 Structure
+
+```
+tp2-cnn-transfer-learning/
+├── notebooks/TP2_CNN_Transfer.ipynb   # Notebook principal
+├── data/                              # Dataset (CIFAR ou autre)
+└── rapport/rapport.md
+```
+
+---
 
 ## 📂 Données
-- Source : (Drive/URL)
-- Lien : <lien>
-- Format : <format>
 
-## ▶️ Lancer (Colab)
-- Ouvrir le badge ci-dessus
-- Monter Drive si nécessaire
-- Définir `DATA_DIR` et exécuter
+CIFAR-10 ou autre dataset public — téléchargement via torchvision ou URL. Définir `DATA_DIR` selon le contexte.
 
-## 🧪 Plan d'expérience
-- …
+---
 
-## 📈 Résultats attendus
-- Figures : `rapport/fig1.png`, `rapport/fig2.png`
+## ▶️ Exécution
 
-## 📝 Rapport
-Voir `rapport/rapport.md`
+Ouvrir le notebook dans Jupyter ou Google Colab. GPU recommandé pour l'entraînement.
+
+---
+
+## 👤 Auteur
+
+**Wassim Chikhi** — Master 2 VMI — Université Paris Cité — 2025/2026

@@ -1,81 +1,69 @@
-# GAN & VAE – Génération de sprites Pokémon
+# TP3 — GAN & VAE : Génération de sprites Pokémon
 
-Ce dépôt contient le travail réalisé dans le cadre du TP de **Generative AI (M2 VMI)**,
-portant sur la génération d’images de sprites Pokémon à l’aide de
-**Variational Autoencoders (VAE)** et de **Generative Adversarial Networks (GAN / DCGAN)**.
+**Master 2 VMI — Multi-modalité et IA générative**
 
----
-
-## 📌 Contenu du dépôt
-
-- `GANLab_To_complete2_Wassim_Chikhi.ipynb`  
-  Notebook principal contenant :
-  - l’implémentation du VAE
-  - l’implémentation du GAN (DCGAN)
-  - les essais d’hyperparamètres
-  - les courbes de loss et visualisations
-
-- `rapport_GAN_VAE.tex`  
-  Rapport d’expérience au format LaTeX.
-
-- `figures/`  
-  Dossier contenant les figures utilisées dans le rapport :
-  - courbes de loss GAN
-  - images générées par le GAN
-  - reconstructions et échantillons du VAE
+Ce TP porte sur la génération d'images de sprites Pokémon à l'aide de **Variational Autoencoders (VAE)** et de **Generative Adversarial Networks (GAN / DCGAN)**.
 
 ---
 
-## 🧠 Objectifs du TP
+## 🎯 Objectifs du TP
 
-- Implémenter et entraîner un **VAE convolutionnel** pour la reconstruction et la génération d’images.
-- Implémenter un **GAN de type DCGAN** pour générer des sprites Pokémon réalistes.
-- Étudier l’influence des hyperparamètres (learning rate, dimension latente, nombre d’époques).
-- Comparer qualitativement les résultats du VAE et du GAN.
-
----
-
-## ⚙️ Environnement
-
-- Python 3
-- PyTorch
-- torchvision
-- matplotlib
-- Jupyter Notebook
-- GPU CUDA (optionnel)
+- Implémenter et entraîner un **VAE convolutionnel** pour la reconstruction et la génération d'images
+- Implémenter un **GAN de type DCGAN** pour générer des sprites Pokémon réalistes
+- Étudier l'influence des hyperparamètres (learning rate, dimension latente, nombre d'époques)
+- Comparer qualitativement les résultats du VAE et du GAN
 
 ---
 
-## ▶️ Exécution
+## 📁 Structure du projet
 
-Ouvrir le notebook principal :
-
-```bash
-jupyter notebook GANLab_To_complete2_Wassim_Chikhi.ipynb
+```
+TP 3 GaN-VAE/
+├── ganlab-completed-by-wassim.ipynb   # Notebook principal
+├── TP_GaN_VAE_WASSIM (1).pdf         # Rapport final
+└── README.md
 ```
 
-Puis exécuter les cellules dans l’ordre.
+---
+
+## 📌 Contenu du notebook
+
+- Implémentation du **VAE** (encodeur, décodeur, loss ELBO)
+- Implémentation du **DCGAN** (générateur, discriminateur)
+- Essais d'hyperparamètres
+- Courbes de loss et visualisations des images générées
 
 ---
 
 ## 📊 Résultats principaux
 
-- Le **VAE** permet de bonnes reconstructions mais génère des images floues lors de l’échantillonnage.
-- Le **GAN (DCGAN)** produit des images visuellement plus réalistes, mais son entraînement est plus sensible aux hyperparamètres.
-- Un learning rate de `2e-4` et une dimension latente de `100` donnent les résultats les plus stables pour le GAN.
+- Le **VAE** permet de bonnes reconstructions mais génère des images floues lors de l'échantillonnage
+- Le **GAN (DCGAN)** produit des images visuellement plus réalistes, mais son entraînement est plus sensible aux hyperparamètres
+- Paramètres stables pour le GAN : learning rate `2e-4`, dimension latente `100`
 
 ---
 
-## 📎 Remarques
+## ⚙️ Environnement
 
-- Plusieurs essais intermédiaires ont été réalisés pour explorer les hyperparamètres.
-- Tous les essais ne sont pas systématiquement sauvegardés visuellement ; les choix finaux sont justifiés dans le rapport.
+- Python 3, PyTorch, torchvision, matplotlib
+- **GPU CUDA** recommandé (entraînement GAN)
+
+```bash
+pip install torch torchvision matplotlib jupyter
+```
+
+---
+
+## ▶️ Exécution
+
+```bash
+jupyter notebook ganlab-completed-by-wassim.ipynb
+```
+
+Exécuter les cellules dans l'ordre.
 
 ---
 
 ## 👤 Auteur
 
-**Wassim Chikhi**  
-Master 2 Vision et Machine Intelligente  
-Université Paris Cité  
-Année universitaire 2025–2026
+**Wassim Chikhi** — Master 2 VMI — Université Paris Cité — 2025/2026

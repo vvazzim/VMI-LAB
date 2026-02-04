@@ -1,26 +1,38 @@
-# Deep Learning — TP1 — MLP (MNIST)
-**Auteur :** <Ton Nom> · **Date :** <jj/mm/aaaa>
+# TP1 — MLP sur MNIST
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](<URL_VERS_NOTEBOOK_SUR_GITHUB>)
+**Master 2 VMI — Module Deep Learning**
 
-## 🎯 Objectifs
-- …
+---
+
+## 🎯 Objectif
+
+Introduction au Deep Learning supervisé : classification de chiffres manuscrits (MNIST) avec un réseau MLP.
+
+---
+
+## 📁 Structure
+
+```
+tp1-mlp-mnist/
+├── notebooks/TP1_MLP.ipynb     # Notebook principal
+├── data/                       # MNIST (auto-téléchargé via torchvision)
+└── rapport/rapport.md
+```
+
+---
 
 ## 📂 Données
-- Source : (Drive/URL)
-- Lien : <lien>
-- Format : <format>
 
-## ▶️ Lancer (Colab)
-- Ouvrir le badge ci-dessus
-- Monter Drive si nécessaire
-- Définir `DATA_DIR` et exécuter
+MNIST — téléchargement automatique via `torchvision.datasets.MNIST`.
 
-## 🧪 Plan d'expérience
-- …
+---
 
-## 📈 Résultats attendus
-- Figures : `rapport/fig1.png`, `rapport/fig2.png`
+## ▶️ Exécution
 
-## 📝 Rapport
-Voir `rapport/rapport.md`
+Ouvrir le notebook dans Jupyter ou Google Colab. Définir `DATA_DIR` si nécessaire.
+
+---
+
+## 👤 Auteur
+
+**Wassim Chikhi** — Master 2 VMI — Université Paris Cité — 2025/2026

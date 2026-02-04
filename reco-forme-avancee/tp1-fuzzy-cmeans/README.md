@@ -1,7 +1,7 @@
 # Reco — TP1 — Fuzzy C-Means  
 **Auteur :** Wassim Chikhi · **Date :** 06/11/2025  
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/vvazzim/Tp-VMI-Wassim/blob/main/reco-forme-avancee/tp1-fuzzy-cmeans/notebooks/TP_Fuzzy_C_Means2.0.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/vvazzim/Tp-VMI-Wassim/blob/main/reco-forme-avancee/tp1-fuzzy-cmeans/notebooks/TP_Fuzzy_C_Means3_0.ipynb)
 
 ---
 

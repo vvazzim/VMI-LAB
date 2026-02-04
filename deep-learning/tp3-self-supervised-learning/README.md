@@ -57,7 +57,7 @@ Les tâches **globales ou contrastives** (SimCLR, Rotation) fournissent les meil
 
 ## Liens utiles  
 - Notebook Colab : [`notebooks/Self_Supervised_Learning_Demos_final.ipynb`](./notebooks/Self_Supervised_Learning_Demos_final.ipynb)  
-- Rapport PDF : [`rapport/CHIKHI_Wassim_TP3_SSL_VMI2025.pdf`](./rapport/CHIKHI_Wassim_TP3_SSL_VMI2025.pdf)
+- Rapport PDF : [`rapport/rapport_SSL.pdf`](./rapport/rapport_SSL.pdf)
 
 ---
 

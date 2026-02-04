@@ -1,84 +1,48 @@
-# 🧪 TP1 — Imagerie Photonique : Modalités et principe de la fluorescence
+# TP1 — Imagerie Photonique : Modalités et Photoblanchiment
 
-**Auteur :** Wassim Chikhi  
-**Année :** 2025–2026  
-**Formation :** Master 2 Vision & Machine Intelligente — UE Bio-Imagerie Médicale  
-**Université :** Université Paris Cité  
+**Master 2 VMI — UE Bio-Imagerie Médicale**  
+**Auteur :** Wassim Chikhi
 
 ---
 
 ## 🎯 Objectifs
-Ce premier TP vise à illustrer les **principales modalités de microscopie photonique** :
-- Microscopie en **champ clair** (transmission)
-- Microscopie à **contraste de phase**
-- Microscopie à **fluorescence (champ large)**
-- Microscopie **confocale à balayage**
 
-Chaque configuration est représentée par un **schéma optique en TikZ**, construit selon les principes physiques vus en cours.
+Illustrer les **modalités de microscopie photonique** :
+- Champ clair (transmission)
+- Contraste de phase
+- Fluorescence (champ large)
+- Confocale à balayage
 
 ---
 
-## 📂 Structure du projet
+## 📁 Structure
+
 ```
-TP1_BioImg/
-├── figures/                   # Schémas TikZ des quatre microscopes
-│   ├── 01_microscope_champ_clair.tex
-│   ├── 02_microscope_contraste_phase.tex
-│   ├── 03_microscope_fluorescence.tex
-│   └── 04_microscope_confocal.tex
-├── images/                    # Graphiques et images de résultats
-│   └── mean_intensity_plot.png
-├── Universite_Paris-Cite-logo.jpeg
-├── rapport.tex                # Rapport principal en LaTeX
-└── TP_1_BioImg.pdf            # Rapport compilé final
+Tp1-Modalities/
+├── figures/                    # Schémas des microscopes
+│   ├── 01_microscope_champ_clair.png
+│   ├── 02_microscope_contraste_phase.png
+│   ├── 03_microscope_fluorescence_champ_large.png
+│   └── 04_microscope_confocal.png
+├── report/
+│   └── TP_1_BioImg_Wassim.pdf  # Rapport final
+└── README_TP1_BioImg.md
 ```
 
 ---
 
-## ⚙️ Compilation du rapport
-### En local
-```bash
-pdflatex -shell-escape rapport.tex
-```
-⚠️ Le flag `-shell-escape` est indispensable pour que les figures **standalone** soient automatiquement compilées.
+## 📊 Photoblanchiment
 
-### En ligne (Overleaf)
-- Importer le dossier complet  
-- Vérifier que le mode de compilation est `LaTeX ➜ PDF`  
-- Activer **Shell Escape** dans les paramètres du projet  
+Une séquence temporelle (`cell2D_timelapse.tif`) illustre le photoblanchiment : calcul de l'intensité moyenne par image, fit exponentiel pour estimer la constante τ.
 
 ---
 
-## 📊 Analyse d'image
-Une séquence temporelle (`cell2D_timelapse.tif`) est utilisée pour illustrer le **photoblanchiment** :
-- Calcul de l’intensité moyenne par image :  
-  \[
-  I_{moy}(t) = \frac{1}{N}\sum_{i=1}^{N} I_i(t)
-  \]
-- Résultat : décroissance progressive de la fluorescence.
+## 📝 Rapport
+
+`report/TP_1_BioImg_Wassim.pdf`
 
 ---
 
-## 📈 Résultats
-- **Figures principales :**
-  - `01_microscope_champ_clair.pdf`
-  - `02_microscope_contraste_phase.pdf`
-  - `03_microscope_fluorescence.pdf`
-  - `04_microscope_confocal.pdf`
-- **Graphique d’intensité moyenne :**
-  - `mean_intensity_plot.png`
+## 👤 Auteur
 
----
-
-## 📝 Rapport final
-Le rapport complet est disponible ici :  
-📄 **[`TP_1_BioImg.pdf`](TP_1_BioImg.pdf)**  
-
----
-
-## 🧩 Remarques
-- Tous les schémas TikZ utilisent un jeu de couleurs standardisé :
-  - Vert `exc` pour l’excitation
-  - Rouge `emi` pour l’émission
-  - Gris `opticgray` pour les éléments optiques neutres  
-- Compatible avec `tau-class` pour la mise en page normalisée des TPs du M2 VMI.
+**Wassim Chikhi** — Master 2 VMI — Université Paris Cité — 2025/2026

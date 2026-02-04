@@ -1,54 +1,40 @@
 # TP3 — Multi-Object Tracking (Séquences Vidéo)
 
-**UE Séquence Vidéo — Master 2 Vision et Machine Intelligente (VMI)**  
-Université Paris Cité — Année 2025/2026
-
-## 👤 Auteur
-**Wassim Chikhi**
+**Master 2 VMI — Module Séquences Vidéo**  
+Université Paris Cité — 2025/2026
 
 ---
 
-## 🎯 Objectifs du TP
+## 🎯 Objectifs
 
-Ce TP a pour objectif d’explorer et comparer différentes approches de **suivi multi-objets**
-dans des séquences vidéo réelles :
+Explorer et comparer différentes approches de **suivi multi-objets** dans des séquences vidéo :
 
-- **Q1 — Tracking classique (OpenCV)**  
-  Suivi multi-objets par trackers CSRT avec initialisation manuelle.
-
-- **Q2 — Tracking par détection (YOLOv8 + IoU)**  
-  Détection image par image avec YOLOv8 et association temporelle par recouvrement IoU.
-
-- **Bonus 1 — Filtrage de Kalman**  
-  Lissage et prédiction de trajectoires 2D.
-
-- **Bonus 2 — Étude de paramètres**  
-  Influence des seuils (confidence, IoU), FPS et stabilité des trajectoires.
+| Partie | Description |
+|--------|-------------|
+| **Q1 — Tracking classique** | Trackers CSRT (OpenCV) avec initialisation manuelle des bboxes sur la première frame |
+| **Q2 — Tracking par détection** | YOLOv8 + association temporelle par IoU (classe person) |
+| **Bonus 1 — Kalman** | Filtrage de Kalman 2D pour lissage et prédiction des trajectoires |
+| **Bonus 2 — Paramètres** | Étude de l'influence des seuils (confidence, IoU) sur la stabilité |
 
 ---
 
-## 📁 Organisation du projet
+## 📁 Organisation
 
 ```
 SeqVid/TP3/
 ├── README.md
-├── .gitignore
 ├── environment.yml
 ├── requirements.txt
 ├── src/
-│   ├── q1_csrt.py
-│   ├── q2_yolo_iou.py
-│   ├── bonus_kalman.py
-│   ├── bonus_param_sweep.py
-│   ├── export_frames.py
-│   ├── select_bboxes.py
+│   ├── q1_csrt.py           # Q1 — CSRT
+│   ├── q2_yolo_iou.py       # Q2 — YOLO + IoU
+│   ├── bonus_kalman.py      # Bonus — Kalman
+│   ├── bonus_param_sweep.py # Bonus — étude paramètres
+│   ├── export_frames.py     # Export de frames
+│   ├── select_bboxes.py     # Sélection manuelle bboxes (Q1)
 │   └── utils_io.py
-├── tracking/
-│   └── README_DATA.md
-├── tracking_results/
-│   ├── *.mp4
-│   ├── *.csv
-│   └── *.png
+├── tracking/                # Vidéos d'entrée (à fournir, non versionnées)
+├── tracking_results/        # Sorties (vidéos, CSV, figures)
 └── report/
     └── TP3_SeqVid_Wassim.pdf
 ```
@@ -63,30 +49,34 @@ conda activate seqvid
 pip install -r requirements.txt
 ```
 
+**Dépendances principales :** `opencv-python`, `ultralytics` (YOLOv8), `torch`, `pandas`, `matplotlib`, `tqdm`
+
 ---
 
 ## ▶️ Exécution
 
+Placer les vidéos dans `tracking/` ou préciser le chemin avec `--video` :
+
 ```bash
-python src/q1_csrt.py --video tracking/Tracking2min.avi
-python src/q2_yolo_iou.py --video tracking/Tracking2min.avi
+# Q1 — CSRT (sélection manuelle des bboxes au lancement)
+python src/q1_csrt.py --video tracking/VOTRE_VIDEO.avi
+
+# Q2 — YOLO + IoU
+python src/q2_yolo_iou.py --video tracking/VOTRE_VIDEO.avi
 ```
+
+Les sorties sont enregistrées dans `tracking_results/`.
 
 ---
 
 ## 📊 Résultats
 
-Les résultats sont enregistrés dans `tracking_results/` :
-- vidéos annotées,
-- trajectoires,
-- fichiers CSV,
-- figures PNG.
+- Vidéos annotées (`.mp4`)
+- Trajectoires (CSV)
+- Figures (PNG)
 
 ---
 
-## 📄 Rapport
+## 👤 Auteur
 
-Rapport final :
-```
-SeqVid/TP3/report/TP3_SeqVid_Wassim.pdf
-```
+**Wassim Chikhi** — Master 2 VMI — Université Paris Cité — 2025/2026
